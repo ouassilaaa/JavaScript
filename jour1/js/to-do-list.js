@@ -79,7 +79,36 @@ list.insertAdjacentElement(position,text);
 
 };
 
-//ajouter une tache avec enter keycode:13
+//on récupère l'input (toDo) et on ecoute les touches pressees 
+// on ecoute pour savoir si la touche entrée est pressée
+
+document.addEventListener("keyup", function(event){
+    //si touche pressée (keyup) et enter k13 
+    if (event.keyCode==13){
+        //récupère l'input
+        const toDo=input.value; 
+        //controle si l'input est vide 
+        if(toDo){
+            // 4 parametres: 
+            // a) la tâche, name
+            // b) son numéro, id
+            // c) si elle est effectué, done    
+            // d) si elle est à la poubelle, trash
+            addTodo(toDo, id, false, false); 
+
+            //ajout de la tache a la liste avec .push 
+            LIST.push({
+                name:toDo,
+                id: id, 
+                done: false, 
+                trash: false
+            });
+             
+        }
+
+        input.value=""; 
+
+    }}); 
 
 
 
