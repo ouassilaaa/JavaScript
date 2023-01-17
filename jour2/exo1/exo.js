@@ -30,6 +30,7 @@ const majCounter = async () => {
 majCounter();
 
 
+
 //** METHODE avec Fetch +then + catch + async Await */
 // const counter = document.getElementById('counter');
 // const majCounter = ()=>{
@@ -53,3 +54,15 @@ majCounter();
 // }
 //  majCounter();
 
+// EXO POKEMON : aire en sorte d'afficher les noms des pokemon dans une page 
+
+const countPokemon = document.getElementById('counter');
+const majCounterPokemon = async () => {
+    let data = await fetch('https://pokeapi.co/api/v2/pokemon');
+    console.log(data);
+    const dataTransformed = await data.json();
+    console.log(dataTransformed);
+    counter.innerText = dataTransformed.value;
+    counter.style.filter = 'blur(0)';
+};
+majCounter();

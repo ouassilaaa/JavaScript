@@ -1,0 +1,25 @@
+body{
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(65, 154, 154);
+    color: white;
+}  
+h1{
+    transform: rotate(5deg);
+}
+#counter{
+    font-size: 8em;
+    margin: 0;
+    filter: blur(31px);
+    transition: 200ms;
+}
+    </style>
+<body>
+<h1>POKEMON : </h1>
+<h2 id="counter">0</h2>
+<h1 id="ici"></h1>
+<ul id="pokeListe"></ul>
+</body>

@@ -90,13 +90,13 @@ document.addEventListener("keyup", function(event){
         //controle si l'input est vide 
         if(toDo){
             // 4 parametres: 
-            // a) la tâche, name
-            // b) son numéro, id
-            // c) si elle est effectué, done    
-            // d) si elle est à la poubelle, trash
+            // a) name = l'input
+            // b) id= représente son index 
+            // c) "done"= si true le ToDo est effectué     
+            // d) "trash"= si true le ToDo est effacé
             addTodo(toDo, id, false, false); 
 
-            //ajout de la tache a la liste avec .push 
+            //ajout d'un élément a la fin de la liste avec  LIST.push 
             LIST.push({
                 name:toDo,
                 id: id, 
@@ -107,6 +107,8 @@ document.addEventListener("keyup", function(event){
         }
 
         input.value=""; 
+        //incrementé l'id pour l'ajout d'élément 
+        id++; 
 
     }}); 
 
