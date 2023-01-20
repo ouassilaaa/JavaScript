@@ -111,3 +111,92 @@ const pme = new Pme (
     20000,
     50000);
 pme.bilanCalculed();
+
+//! ----------------------EXO CLASS BANCAIRE----------------------
+/*EXO POO CLASSE : Les comptes bancaire 
+
+## Exception+POO 
+
+## Enoncé gérer des comptes en banques 
+
+## Consignes
+ - créer une classe CompteBancaire avec les méthodes de crédit, de retrait et de visualisation de l'état du compte
+on doit pouvoir également faire un virement d'un membre à un autre 
+- générer une exception sur le prélèvement / retrait interdit (qui dépasse le solde)
+
+ ## Détails 
+
+Faire un scénario avec gestion de 3 comptes crédités à 1000 chacun (Alex, Clovis, Marco), puis Alex retire 100, puis Marco fait un virement de 300 à Clovis... Enfin Alex tente un retrait de 1200. Afficher tous les soldes finaux. Ces comptes sont placés dans un tableau associatif de clients. les sorties sont dans la console*/
+
+// Main scénario, gère 3 comptes bancaires dans un tableau associatif 
+const lesComptes = {
+  "Alex" : new CompteBancaire("Alex"),
+  "Clovis" : new CompteBancaire("Clovis"),
+  "Marco" : new CompteBancaire("Marco"),
+}  
+// lecture tableau associatif ou Objet["truc"] 
+// Boucle FOR IN qui Crédite et décrit chaque compte
+for (let element in lesComptes)
+  lesComptes[element].crediter(1000);
+  
+// un retrait de la part d'ALex
+lesComptes["Alex"].retirer (100);
+// un petit virement de Marco à Clovis :
+lesComptes["Marco"].virer (300, lesComptes["Clovis"]);
+// un petit retrait incorrect pour Alex
+lesComptes["Alex"].retirer (1200);
+
+
+// bilan
+for (let unTruc in lesComptes)
+  console.log(lesComptes[unTruc].decrire());
+
+  class CompteBancaire {
+    constructor(nom){
+      this.nom= nom;
+      this.credit = 0;
+    }
+    Credit(montantCred){ 
+      this.credit+=montantCred;              
+      console.log(`Ajout de: ${montantCred}€ pour ${this.nom}.`);
+      return this.credit;
+    }
+    retrait(montantRetrait){
+      if(this.credit<montantRetrait){
+      console.log(`retrait de ${montantRetrait}€ refusé, t'as plus une thune mec.`)
+      }else{
+      console.log(`${this.nom} à retiré ${montantRetrait}€`);
+      return this.credit -= montantRetrait;
+      }
+    }
+    creditDisplay(){
+      console.log(`${this.nom}, il te reste ${this.credit}€.`);
+    }
+    virement(montant,compte){
+      if(this.credit<montant){
+        console.log(`virement de ${montant}€ refusé, t'as plus une thune mec.`);
+      }else{
+        compte.Credit(montant);
+        console.log(`${this.nom} à fait un virement de ${montant}€ à ${compte.nom}.`);
+        this.credit -= montant;
+      }
+    }
+  }
+  
+  const lesComptes2 = {
+    "Alex" : new CompteBancaire("Alex"),
+    "Clovis" : new CompteBancaire("Clovis"),
+    "Marco" : new CompteBancaire("Marco"),
+  }
+  
+  console.log(lesComptes);
+  
+  for (let key in lesComptes)
+        lesComptes[key].Credit(1000);
+  
+  lesComptes["Alex"].creditDisplay();
+  
+  lesComptes["Marco"].virement(300, lesComptes["Clovis"]);
+  
+  lesComptes["Marco"].creditDisplay();
+  lesComptes["Clovis"].creditDisplay(); 

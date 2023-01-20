@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do list </title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet"> 
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="font-awesome.css">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <div class="container">
+        <div class ="header">
+       <!-- Contient le boutons effacer -->    
+            <div class="clear">
+                <!--image effacer font awesome-->
+                <i class="fa fa-refresh"></i>
+            </div>
+
+            <div id="date"></div>
+        </div>
+
+         <!-- Contient la liste sous le header-->
+        <div class="content">
+            <ul id="list">
+                <li class="item">
+                    <i class="fa fa-circle-thin"></i>
+                    <p class="text">Add your to do </p>
+                    <i class="fa fa-trash-o delete"></i>
+                </li>
+            </ul>
+
+            <!-- Partie ou l'on saisie la tâche-->
+            <div class="add-to-do">
+                <i class="fa fa-plus-circle"></i>
+                <input type="text" id="input" placeholder="To do">
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
