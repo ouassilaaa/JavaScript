@@ -1,6 +1,6 @@
 // sélectionner les éléments
 // sélectionner le bouton effacer, const qui nous permettra d'accéder à l'élement qu'on voudra supprimer 
-const clear= document.querySelector(".clear"); 
+const clear= document.querySelector("clear"); 
 // sélectionner l'élément avec l'id "date"
 const dateElement=document.getElementById("date"); 
 // sélectionner la liste
@@ -15,6 +15,7 @@ const CHECK= "fa-check-circle";
 const UNCHECK="fa-plus-circle"; 
 // classe Font awesome permettant d'obtenir l'effet rayer
 const LINE_THROUGH="lineThrough"; 
+
 
 
 //récupérer "to do" dans la memoire locale 
@@ -152,8 +153,37 @@ list.addEventListener("click", function(event){
     localStorage.setItem('TODO', JSON.stringify(LIST)); 
 });
 
+//horloge
+// 
+setInterval(setClock, 1000)
+// récuperer l'aiguille des heures , des minutes, et secondes
+const hourHand = document.querySelector('[data-hour-hand]')
+const minuteHand = document.querySelector('[data-minute-hand]')
+const secondHand = document.querySelector('[data-second-hand]')
 
 
+function setClock() {
+    // on récupère l'heure actuelle
+  const currentDate = new Date()
+  // transformation de l'heure en seconde
+  const secondsRatio = currentDate.getSeconds() / 60
+  // en minute
+  const minutesRatio = (secondsRatio + currentDate.getMinutes()) / 60
+  // en heure
+  const hoursRatio = (minutesRatio + currentDate.getHours()) / 12
+  // assigne les données aux aiguilles
+  setRotation(secondHand, secondsRatio)
+  setRotation(minuteHand, minutesRatio)
+  setRotation(hourHand, hoursRatio)
+}
+
+
+function setRotation(element, rotationRatio) {
+  element.style.setProperty('--rotation', rotationRatio * 360)
+}
+
+// lancer la fonction et afficher l'heure
+setClock()
 
 
 
